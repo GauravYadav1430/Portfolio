@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gaurav Yadav | Portfolio</title>
+  <style>
+    :root {
+      --bg-color: #e0e0e0;
+      --text-color: #222;
+      --card-bg: rgba(255, 255, 255, 0.15);
+      --accent: #00aaff;
+    }
+
+    body.dark-mode {
+      --bg-color: #121212;
+      --text-color: #f4f4f4;
+      --card-bg: rgba(30, 30, 30, 0.4);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    /* --- Parallax Hero Section --- */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1496307653780-42ee777d4833?auto=format&fit=crop&w=1400&q=80') center center / cover no-repeat fixed;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    .glass-button {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(8px);
+      padding: 12px 25px;
+      border-radius: 10px;
+      color: white;
+      margin-top: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+      transition: all 0.4s ease;
+    }
+
+    .glass-button:hover {
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.9);
+      transform: scale(1.05);
+    }
+
+    header {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      padding: 40px 20px;
+      /* position: sticky;
+      top: 0; */
+      z-index: 999;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin: 0;
+    }
+
+    .typing {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      height: 24px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid var(--accent);
+      animation: typing 4s steps(40, end) infinite, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      0% { width: 0; }
+      50% { width: 100%; }
+      100% { width: 0; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--accent); }
+    }
+
+    nav {
+      margin: 20px 0;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: bold;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .toggle-btn {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeIn 1s ease-in;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+
+    .about-text, .project-card p, section p {
+      line-height: 1.6;
+      font-size: 1.05rem;
+      background: linear-gradient(90deg, var(--accent), var(--text-color));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 20px auto;
+      display: block;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.05);
+    }
+
+    .projects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .project-card {
+      flex: 1 1 45%;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover {
+      transform: rotateY(5deg) rotateX(5deg);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media(max-width: 768px) {
+      .projects {
+        flex-direction: column;
+      }
+      .project-card {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Gaurav Yadav</h1>
+    <p>"Code like a poet, debug like a madman, and vibe like a legend."</p>
+    <button class="glass-button" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Enter My World</button>
+  </div>
+</div>
+
+<!-- Sticky Header -->
+<header>
+  <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-pic">
+  <h1>Gaurav Yadav</h1>
+  <p class="typing">Web Developer | Footballer | Gamer | Procrastination Master 😎</p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</header>
+
+<!-- About Section -->
+<section id="about">
+  <h2>About Me</h2>
+  <p class="about-text">Hey! I'm Gaurav, a full-stack developer and football freak. Whether it's chasing a bug or the ball, I’m always sprinting to win. I code with passion, design with intuition, and sometimes cry over semicolons. Welcome to my world of caffeine, code, and controlled chaos.</p>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="project-card">
+      <h3>My Portfolio Site</h3>
+      <p>HTML5, CSS3 – A responsive personal website with dark mode, typing effects, and pure swag. Like you're seeing now 😉</p>
+    </div>
+    <div class="project-card">
+      <h3>Football Stats App</h3>
+      <p>React.js, Firebase – A footballer’s dream tracker app with match stats, goals, and bragging rights.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:gaurav.yadav@example.com">gaurav.yadav@example.com</a></p>
+  <p>Find me on <a href="https://www.linkedin.com/in/gauravyadav" target="_blank">LinkedIn</a> or <a href="https://github.com/gauravyadav" target="_blank">GitHub</a></p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Gaurav Yadav. All Rights Reserved.</p>
+</footer>
+
+<script>
+  // Dark Mode Toggle
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+</script>
+
+</body>
+</html>
